@@ -4,7 +4,7 @@ import './features.css'
 const Features = () => {
   return (
     //that use parallax
-    <div className="features_bg bg-fixed">
+    <div className="features_bg bg-fixed my-10">
       <Section_Title
         Sub_Heading={"---Check it out---"}
         Heading={"FROM OUR MENU"}
