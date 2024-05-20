@@ -1,5 +1,5 @@
-import Section_Title from "../Section_Title/Section_Title";
-import features from "../../assets/home/featured.jpg";
+import Section_Title from "../../../components/Section_Title/Section_Title";
+import features from "../../../assets/home/featured.jpg";
 import './features.css'
 const Features = () => {
   return (

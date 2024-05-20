@@ -5,9 +5,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper/modules";
-import Section_Title from "../Section_Title/Section_Title";
+import Section_Title from "../../../components/Section_Title/Section_Title";
 import { useEffect, useState } from "react";
-import { data } from "autoprefixer";
 import { Rating } from "@smastrom/react-rating";
 import '@smastrom/react-rating/style.css'
 
