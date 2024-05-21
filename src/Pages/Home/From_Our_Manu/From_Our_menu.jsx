@@ -15,7 +15,7 @@ const From_Our_menu = () => {
           Heading={"FROM OUR MENU"}
         ></Section_Title>
       </div>
-      <Menu_list list={populars}></Menu_list>
+      <Menu_list list={populars} btn={"View Full  Menu"}></Menu_list>
     </div>
   );
 };

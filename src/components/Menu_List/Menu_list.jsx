@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import Menu_Card from "../../Pages/Home/From_Our_Manu/Menu_Card";
 
-const Menu_list = ({list,btn}) => {
+const Menu_list = ({list,btn,to}) => {
 
   return (
       <div className="my-10">
@@ -10,9 +11,9 @@ const Menu_list = ({list,btn}) => {
         ))}
       </div>
       <div className="flex justify-center">
-        <button className="btn btn-outline border-0 border-b-2">
+        <Link to={`/Shop/${to}`} className="btn btn-outline border-0 border-b-2">
           {btn}
-        </button>
+        </Link>
       </div>
       </div>
   );

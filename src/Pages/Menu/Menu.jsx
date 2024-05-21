@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import Cover from "../../components/Cover/Cover";
 import banner3 from '../../assets/menu/banner3.jpg'
 import Section_Title from "../../components/Section_Title/Section_Title";
-import From_Our_menu from "../Home/From_Our_Manu/From_Our_menu";
 import Menu_list from "../../components/Menu_List/Menu_list";
 import useMenuData from "../../hooks/useMenuData";
 import dessert_bg from "../../assets/menu/dessert-bg.jpeg";
@@ -26,19 +25,19 @@ const Menu = () => {
             <Cover img={banner3} title={'OUR MENU'} sub_title={"Would you like to try a dish?"}></Cover>
             <Section_Title Sub_Heading={"---Don't miss---"} Heading={"TODAY'S OFFER"}></Section_Title>
             {/* This is Todays Offers */}
-            <Menu_list list={offered} btn={"ORDER YOUR FAVOURITE FOOD"}></Menu_list>
+            <Menu_list list={offered} btn={"ORDER YOUR FAVOURITE FOOD"} to={"offered"}></Menu_list>
             {/* This is Dessert menu section */}
             <Cover img={dessert_bg} title={'DESSERTS'} sub_title={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}></Cover>
-            <Menu_list list={dessert} btn={"ORDER YOUR FAVOURITE FOOD"}></Menu_list>
+            <Menu_list list={dessert} btn={"ORDER YOUR FAVOURITE FOOD"} to={"dessert"}></Menu_list>
             {/* This is Pizza Menu Section */}
             <Cover img={pizza_bg} title={'PIZZA'} sub_title={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}></Cover>
-            <Menu_list list={pizza} btn={"ORDER YOUR FAVOURITE FOOD"}></Menu_list>
+            <Menu_list list={pizza} btn={"ORDER YOUR FAVOURITE FOOD"} to={"pizza"}></Menu_list>
             {/* This is Salad Menu Section */}
             <Cover img={salad_bg} title={'SALADS'} sub_title={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}></Cover>
-            <Menu_list list={salad} btn={"ORDER YOUR FAVOURITE FOOD"}></Menu_list>
+            <Menu_list list={salad} btn={"ORDER YOUR FAVOURITE FOOD"} to={"salad"}></Menu_list>
             {/* This is Soup Menu Section */}
             <Cover img={soup_bg} title={'SOUPS'} sub_title={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."}></Cover>
-            <Menu_list list={soup} btn={"ORDER YOUR FAVOURITE FOOD"}></Menu_list>
+            <Menu_list list={soup} btn={"ORDER YOUR FAVOURITE FOOD"} to="soup"></Menu_list>
         </div>
     );
 };
