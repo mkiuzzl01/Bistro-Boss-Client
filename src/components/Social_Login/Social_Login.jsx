@@ -5,24 +5,23 @@ import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const Social_Login = () => {
   const navigate = useNavigate();
-  const { googleLogin, user: newUser, setUser } = useAuth();
+  const { googleLogin, user:newUser, setUser } = useAuth();
   const axiosCommon = useAxiosCommon();
 
   const go = location?.state?.from?.pathname || "/";
+
   const handleGoogleLogin = async () => {
     try {
       const { user } = await googleLogin();
+      setUser(newUser);
       if (user) {
+        const info = {
+          name: user?.displayName,
+          email: user?.email,
+          photo: user?.photoURL,
+        };
         try {
-          const info = {
-            name: user?.displayName,
-            email: user?.email,
-            photo: user?.photoURL,
-          };
-          console.log(info);
-          const { data } = await axiosCommon.post('/users',info);
-          console.log(data);
-          setUser(newUser);
+         await axiosCommon.post('/users',info);
           navigate(go);
         } catch (error) {
           console.log(error.message);

@@ -13,11 +13,13 @@ import {
   FiUsers,
 } from "react-icons/fi";
 import useCarts from "../../hooks/useCarts";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
   const [items] = useCarts();
   //todo:
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  // console.log(isAdmin);
 
   return (
     <main className="max-w-7xl m-auto">

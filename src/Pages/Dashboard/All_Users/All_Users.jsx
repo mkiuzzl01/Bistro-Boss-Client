@@ -6,9 +6,9 @@ import { FiUsers } from "react-icons/fi";
 const All_Users = () => {
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["all_users"],
+    queryKey: ["users"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/users");
+      const { data } = await axiosSecure.get('/users');
       return data;
     },
   });
