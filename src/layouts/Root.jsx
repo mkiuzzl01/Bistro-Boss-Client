@@ -4,8 +4,7 @@ import Footer from "./Footer";
 
 const Root = () => {
     const location = useLocation();
-    console.log(location);
-    const isLogin = location.pathname.includes('Login')
+    const isLogin = location.pathname.includes('Login') || location.pathname.includes('Registration') 
     return (
         <div>
             <main className="max-w-7xl m-auto">

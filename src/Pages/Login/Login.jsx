@@ -1,39 +1,73 @@
-import { useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { useEffect, useState } from "react";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
+import useAuth from "../../hooks/useAuth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
+import Social_Login from "../../components/Social_Login/Social_Login";
 
 const Login = () => {
-    const captchaRef = useRef(null);
-    const [disable,setDisable] = useState(true);
-    useEffect(()=>{
-        loadCaptchaEnginge(6); 
-    },[]);
+  const { loginUser, googleLogin } = useAuth();
+  const [disable, setDisable] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const go = location?.state?.from?.pathname || "/";
 
-    const handleLogin = (e)=>{
-        e.preventDefault();
-        const from = e.target;
-        const email = from.email.value;
-        const pass = from.password.value;
-        console.log(email,pass);
-    }
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
 
-    const handleValidateCaptcha = ()=>{
-        const userCaptcha = captchaRef.current.value;
-        if(validateCaptcha(userCaptcha)==true){
-            setDisable(false)
-        }else{
-            setDisable(true)
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const pass = form.password.value;
+    loginUser(email, pass)
+      .then((result) => {
+        if (result) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Login Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
+        form.reset();
+        navigate(go);
+      })
+      .then((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleValidateCaptcha = (e) => {
+    e.preventDefault();
+    const userCaptcha = e.target.value;
+    if (validateCaptcha(userCaptcha) == true) {
+      setDisable(false);
+    } else {
+      setDisable(true);
     }
+  };
+
   return (
     <div className="py-24">
-      <div className="flex flex-col max-w-md m-auto p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800">
+      <Helmet>
+        <title>Bistro Boss | Login</title>
+      </Helmet>
+      <div className="flex flex-col max-w-md m-auto p-6 rounded-md sm:p-10 bg-gray-400">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Sign in</h1>
+          <h1 className="my-3 text-4xl font-bold">Login</h1>
           <p className="text-sm dark:text-gray-600">
-            Sign in to access your account
+            Login to access your account
           </p>
         </div>
-        <form onSubmit={handleLogin} className="">
+        <form onSubmit={handleLogin} className="space-y-4">
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">
@@ -57,17 +91,16 @@ const Login = () => {
               />
             </div>
             <div>
-                <label >
-                    <LoadCanvasTemplate />
-                </label>
+              <label>
+                <LoadCanvasTemplate />
+              </label>
               <input
                 type="text"
-                ref={captchaRef}
                 name="captcha"
+                onBlur={handleValidateCaptcha}
                 placeholder="Enter Your Captcha"
                 className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
               />
-              <button onClick={handleValidateCaptcha} className='btn btn-sm w-full my-2'>validate</button>
             </div>
           </div>
           <div className="space-y-2">
@@ -81,17 +114,17 @@ const Login = () => {
             </div>
             <p className="px-6 text-sm text-center dark:text-gray-600">
               Don't have an account yet?
-              <a
-                rel="noopener noreferrer"
-                href="#"
+              <Link
+                to="/Registration"
                 className="hover:underline dark:text-violet-600"
               >
-                Sign up
-              </a>
+                Register
+              </Link>
               .
             </p>
           </div>
         </form>
+        <Social_Login></Social_Login>
       </div>
     </div>
   );
