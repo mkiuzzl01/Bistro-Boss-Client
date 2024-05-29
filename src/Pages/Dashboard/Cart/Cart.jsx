@@ -2,6 +2,7 @@ import { FiTrash } from "react-icons/fi";
 import useCarts from "../../../hooks/useCarts";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [items,refetch] = useCarts();
@@ -19,7 +20,10 @@ const Cart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await axiosSecure.delete(`/Delete/${id}`);
+
+        const { data } = await axiosSecure.delete(`/item-delete/${id}`);
+        console.log(data);
+
         if (data.deletedCount > 0) {
             refetch()
           Swal.fire({
@@ -37,7 +41,11 @@ const Cart = () => {
         <h1 className="text-3xl">Items: {items.length}</h1>
         <h1 className="text-3xl">Total Price: {totalPrice}</h1>
         <div>
-          <button className="btn">Pay</button>
+          {
+            !items.length ?<button  className="btn">Pay</button>:<Link to='/Dashboard/Payment'>
+            <button className="btn">Pay</button>
+          </Link>
+          }
         </div>
       </div>
       <div>

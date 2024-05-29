@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import Social_Login from "../../components/Social_Login/Social_Login";
 
 const Login = () => {
-  const { loginUser, googleLogin } = useAuth();
+  const { loginUser, user, setUser } = useAuth();
   const [disable, setDisable] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,6 +28,7 @@ const Login = () => {
     const pass = form.password.value;
     loginUser(email, pass)
       .then((result) => {
+        setUser(user);
         if (result) {
           Swal.fire({
             position: "top-center",

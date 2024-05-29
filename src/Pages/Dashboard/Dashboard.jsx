@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <main className="max-w-7xl m-auto">
       <div className="flex">
-        <div className="w-64 h-screen bg-orange-400">
+        <div className="w-64 min-h-screen bg-orange-400">
           <ul className="menu space-y-2 p-4">
             {isAdmin ? (
               <>
@@ -74,7 +74,7 @@ const Dashboard = () => {
             ) : (
               <>
                 <Link
-                  to="/Dashboard"
+                  to="/Dashboard/User_Home"
                   className="flex items-center text-2xl space-x-2"
                 >
                   {" "}
@@ -96,7 +96,7 @@ const Dashboard = () => {
                   <FiBook /> Reservation
                 </Link>
                 <Link
-                  to="/Dashboard/Cart"
+                  to="/Dashboard/Payment_History"
                   className="flex items-center text-2xl space-x-2"
                 >
                   {" "}

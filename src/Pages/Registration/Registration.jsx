@@ -29,6 +29,7 @@ const Registration = () => {
       await updateUser(name, photo);
       if (newUser.user) {
         //user info transfer to database
+        setUser(user);
         try {
           const { data } = await axiosCommon.post("/users", userInfo);
           if(data.insertedId){
@@ -40,7 +41,6 @@ const Registration = () => {
               timer: 1500,
             });
             reset();
-            setUser(user);
             navigate("/");
           }
 
